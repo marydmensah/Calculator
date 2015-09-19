@@ -14,7 +14,7 @@ public class Calculator {
 		System.out.println ("5. Square root ");
 		System.out.println ("6. Modulus" );
 		System.out.println ("7. Average");
-		System.out.println ("8. Exponent");
+		System.out.println ("8. Exponential Power");
 
 
 		Scanner input = new Scanner(System.in);
