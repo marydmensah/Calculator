@@ -10,32 +10,53 @@ public class FigureInWords{
 	"Sixty","Seventy","Eighty","Ninety"};
 
 
-	public static String convert(int i){
+	public static String convert(int fig){
 		String store ="";
 		boolean isNegative = false;
 
-		if(i < 0){ 
+		if(fig < 0){ 
 		isNegative = true;
-		 i = Math.abs(i);
+		 fig = Math.abs(fig);
 		}
 
-		if( i < 20)  store = units[i];
+		if( fig < 20)  store = units[fig];
 
-		if( i>= 20 && i < 100 ) 
-			store= tens[i/10] + ((i % 10 > 0)? " " + convert(i % 10):"");
+		if (fig >= 20 && fig < 100) {
+            if (fig % 10 > 0) {
+                store = tens[fig / 10] + " " + convert(fig % 10);
+            } else {
+                store = tens[fig / 10];
+            }
+        }
 
-		if( i>= 100 && i < 1000) 
-			store= units[i/100] + " Hundred" + ((i % 100 > 0)?" and " + convert(i % 100):"");
-
-		if( i>=1000 && i < 1000000) 
-			store= convert(i / 1000) + " Thousand " + ((i % 1000 > 0)? " " + convert(i % 1000):"") ;
-
-		if(i >= 1000000 && i < 1000000000) 
-			store = convert(i / 1000000) + " Million " + ((i % 1000000 > 0)? " " + convert(i % 1000000):"") ;
-
-		if(i >= 1000000000) 
-			store = convert(i / 1000000000) + " Billion " + ((i % 1000000000 > 0)? " " + convert(i % 1000000000):"") ;
-
+        if (fig >= 100 && fig < 1000) {
+            if (fig % 100 > 0) {
+                store = convert(fig / 100) + " Hundred and " + convert(fig % 100);
+            } else {
+                store = convert(fig / 100) + " Hundred";
+            }
+        }
+        if (fig >= 1000 && fig < 1000000) {
+            if (fig % 1000 > 0) {
+                store = convert(fig / 1000) + " Thousand " + convert(fig % 1000);
+            } else {
+                store = convert(fig / 1000) + " Thousand";
+            }
+        }
+        if (fig >= 1000000 && fig <= 1000000000) {
+            if (fig % 1000000 > 0) {
+                store = convert(fig / 1000000) + " Million " + convert(fig % 1000000);
+            } else {
+                store = convert(fig / 1000000) + " Million";
+            }
+        }
+        if (fig > 1000000000) {
+            if (fig % 1000000000 > 0) {
+                store = convert(fig / 1000000000) + " Billion " + convert(fig % 1000000000);
+            } else {
+                store = convert(fig / 1000000000) + " Billion";
+            }
+        }
 		if (isNegative){
 			return "Negative " + store;
 		}else{
