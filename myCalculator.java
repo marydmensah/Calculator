@@ -14,6 +14,7 @@ public class myCalculator {
 		System.out.println ("5. Square root ");
 		System.out.println ("6. Modulus" );
 		System.out.println ("7. Average");
+		System.out.println ("8. Exponent");
 
 
 		Scanner input = new Scanner(System.in);
@@ -65,10 +66,10 @@ public class myCalculator {
 
 		else if (option == 5){
 			System.out.println("You have opted for a squareroot");
-			System.out.println("Enter the first number");
+			System.out.println("Enter the number");
 			double a = input.nextDouble();
 
-			squareroot(a);
+			squareRoot(a);
 		}
 		else if(option == 6){
 		System.out.println("You have opted for a modulus");
@@ -83,15 +84,26 @@ public class myCalculator {
 		else if (option == 7){
 			System.out.println("You have opted for an average");
 			System.out.println("Enter the first number");
-			double a = input.nextDouble();
+ 			
+ 			int a = input.nextInt();
+ 
+      		System.out.println("Enter the second number");
+      		int b = input.nextInt();
 
-			System.out.println("Enter the second number");
-			double b = input.nextDouble();
+      		average(a,b);
+        }
 
-			average(a, b);
+        else if (option == 8){
+        	System.out.println("You have opted for exponent");
+        	System.out.println("Enter the first number");
+        	double a = input. nextDouble();
 
-		}	
-	}
+        	System.out.println("Enter the second number");
+        	double b = input. nextDouble();
+
+        	power(a,b);
+        }
+ 	}
 
 	public static void add(double a, double b){
 		double sum = a + b;
@@ -114,9 +126,42 @@ public class myCalculator {
 
 	}
 
-	public static void squareroot(double a){
-		double root = Math.sqrt(a);
-		System.out.println ("The square root of number is = " + root );
+	public static void squareRoot(double a){
+				boolean isAPositiveNumber = true;
+	        	double digit;
+	 
+	        if(a ==0)
+	        {
+	            System.out.println("Square root of "+ a  +" = "+0);
+	        }
+	 
+	        else if(a<0)
+	        {
+	            a=-a;
+	            isAPositiveNumber = false;
+	        }
+	 
+	        double squareRoot = a/2;
+	        do
+	        {
+	            digit=squareRoot;
+	            squareRoot = (digit + (a/digit))/2;
+	        }
+	        while((digit-squareRoot)!=0);
+	 
+	        if(isAPositiveNumber)
+	        {
+	            System.out.println("Square roots of "+a+" are ");
+	            System.out.println("+"+ squareRoot);
+	            System.out.println("-"+ squareRoot);
+	        }
+	        else
+	        {
+	            System.out.println("Square roots of -"+a+" are ");
+	            System.out.println("+"+ squareRoot);
+	            System.out.println("-"+ squareRoot);
+	        }
+			
 
 	}
 	public static void modulus(double a, double b){
@@ -125,12 +170,20 @@ public class myCalculator {
 
 	}
 
-	public static void average(double a, double b){
-		double avg = (a + b) / 2;
-		System.out.println ("The average of the two numbers is = " + avg );
+	public static void average(int a, int b){
+		int avg = a +(b-a)/2;
+		System.out.println("The average of two numbers is =" + avg);
+	 
+  	}
 
+  	public static void power(double a , double b){
+		double result = 1;
+		for(int i = 0 ; i< b ; i++){
+		result *= a;
+		}
+		System.out.println ("The exponent of the numbers is " + result);
 	}
-
-
-
+     
 }	
+
+	
